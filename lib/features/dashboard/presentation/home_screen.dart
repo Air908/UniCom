@@ -1,4 +1,10 @@
+import 'package:events/features/Events/presentation/EventDetailsScreen.dart';
+import 'package:events/features/Events/presentation/events_screen.dart';
+import 'package:events/features/dashboard/presentation/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../Profile/presentation/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,7 +61,9 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
         actions: [
           IconButton(
             icon: const Icon(Icons.settings, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(ProfileScreen());
+            },
           ),
         ],
       ),
@@ -93,25 +101,39 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: InkWell( onTap:(){
+              Get.off(EventsScreen());
+            }, child: const Icon(Icons.people)),
             label: 'Network',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.work),
+            icon: InkWell(
+                onTap: (){
+                  Get.off(HomeScreen());
+                },
+                child: Icon(Icons.work)),
             label: 'Jobs',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
+           BottomNavigationBarItem(
+            icon: InkWell(
+                onTap: (){
+                  Get.off(EventDetailsScreen());
+                },
+                child: Icon(Icons.message)),
             label: 'Messages',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: InkWell(
+                onTap: (){
+                  Get.off(SearchScreen());
+                },
+                child: Icon(Icons.notifications)),
             label: 'Notifications',
           ),
         ],
