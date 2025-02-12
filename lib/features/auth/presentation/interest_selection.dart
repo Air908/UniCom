@@ -1,3 +1,4 @@
+import 'package:events/features/auth/models/interest_selection_model.dart';
 import 'package:events/features/dashboard/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,32 +14,7 @@ class InterestsScreen extends StatefulWidget {
 class _InterestsScreenState extends State<InterestsScreen> {
   final Set<String> selectedInterests = {};
 
-  final Map<String, List<String>> categories = {
-    'Sports': [
-      'NFL',
-      'Baseball',
-      'Boxing',
-      'Golf',
-      'Basketball',
-      'Fantasy sports',
-      'Tennis',
-    ],
-    'Home & Family': [
-      'Motherhood',
-      'Parenting',
-      'Weddings',
-      'Fatherhood',
-      'Married life',
-      'Relationships',
-    ],
-    'Entertainment & Culture': [
-      'BTS',
-      'HBO',
-      'Anime',
-      'Netflix',
-      'Movies',
-    ],
-  };
+  var categories = InterestModel().categories;
 
   bool get canProceed => selectedInterests.length >= 3;
 

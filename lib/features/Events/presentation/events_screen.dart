@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/EventModel.dart';
+
 class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
 
@@ -288,16 +290,3 @@ class _EventsScreenState extends State<EventsScreen> {
   }
 }
 
-class Event {
-  final String title;
-  final String venue;
-  final String dateTime;
-  final String image;
-
-  Event({
-    required this.title,
-    required this.venue,
-    required this.dateTime,
-    required this.image,
-  });
-}

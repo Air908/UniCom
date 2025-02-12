@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
 
-// Message Model
-class ChatMessage {
-  final String text;
-  final String sender;
-  final DateTime timestamp;
-  final bool isMe;
+import '../models/ChatModel.dart';
 
-  ChatMessage({
-    required this.text,
-    required this.sender,
-    required this.timestamp,
-    required this.isMe,
-  });
-}
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);

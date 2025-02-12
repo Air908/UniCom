@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/IntroModel.dart';
+
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
 
@@ -162,14 +164,3 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 }
 
-class IntroContent {
-  final String image;
-  final String title;
-  final String description;
-
-  IntroContent({
-    required this.image,
-    required this.title,
-    required this.description,
-  });
-}

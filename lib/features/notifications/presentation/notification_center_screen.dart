@@ -1,43 +1,31 @@
 // notifications_screen.dart
+import 'package:events/features/notifications/models/NotificationModel.dart';
 import 'package:flutter/material.dart';
 
-class Notification {
-  final String avatar;
-  final String message;
-  final String timeAgo;
-  final bool isNew;
-
-  Notification({
-    required this.avatar,
-    required this.message,
-    required this.timeAgo,
-    this.isNew = false,
-  });
-}
 
 class NotificationsScreen extends StatelessWidget {
   NotificationsScreen({Key? key}) : super(key: key);
 
-  final List<Notification> newNotifications = [
-    Notification(
+  final List<NotificationModel> newNotifications = [
+    NotificationModel(
       avatar: 'https://placekitten.com/100/100',
       message: 'Mickey tagged you in a post in SF...',
       timeAgo: '3h',
       isNew: true,
     ),
-    Notification(
+    NotificationModel(
       avatar: 'https://placekitten.com/101/101',
       message: 'Lei Dong and Yuzi Zhang sent you...',
       timeAgo: '5d',
       isNew: true,
     ),
-    Notification(
+    NotificationModel(
       avatar: 'https://placekitten.com/102/102',
       message: 'Aileen Yu and Alex Zhang had...',
       timeAgo: '2w',
       isNew: true,
     ),
-    Notification(
+    NotificationModel(
       avatar: 'https://placekitten.com/103/103',
       message: 'Rahul posted in Real Estate...',
       timeAgo: '1m',
@@ -45,13 +33,13 @@ class NotificationsScreen extends StatelessWidget {
     ),
   ];
 
-  final List<Notification> earlierNotifications = [
-    Notification(
+  final List<NotificationModel> earlierNotifications = [
+    NotificationModel(
       avatar: 'https://placekitten.com/104/104',
       message: 'Michie Liu and 4 others had...',
       timeAgo: '3m',
     ),
-    Notification(
+    NotificationModel(
       avatar: 'https://placekitten.com/105/105',
       message: 'Pentagram, an account you follow,...',
       timeAgo: '4m',
@@ -108,15 +96,15 @@ class NotificationsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNotificationTile(Notification notification) {
+  Widget _buildNotificationTile(NotificationModel? notification) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       leading: CircleAvatar(
-        backgroundImage: NetworkImage(notification.avatar),
+        backgroundImage: NetworkImage("${notification?.avatar}"),
         radius: 24,
       ),
       title: Text(
-        notification.message,
+        "${notification?.message}",
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
@@ -127,7 +115,7 @@ class NotificationsScreen extends StatelessWidget {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 4),
         child: Text(
-          notification.timeAgo,
+          "${notification?.timeAgo}",
           style: TextStyle(
             fontSize: 14,
             color: Colors.grey[600],

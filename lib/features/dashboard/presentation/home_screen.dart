@@ -1,5 +1,6 @@
 import 'package:events/features/Events/presentation/EventDetailsScreen.dart';
 import 'package:events/features/Events/presentation/events_screen.dart';
+import 'package:events/features/dashboard/models/Home_Screen_Model.dart';
 import 'package:events/features/dashboard/presentation/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,34 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   String _currentTab = "All";
- final List<Post> _posts = [
-    Post(
-      avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/smiling-young-man-illustration_1308-173524.avif',
-      title: 'The 8th annual Women in Tech...',
-      category: 'Tech Talk',
-    ),
-    Post(
-      avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/smiling-young-man-illustration_1308-173524.avif',
-      title: 'Chloe: I\'m looking for a new job in the...',
-      category: 'Tech Talk',
-    ),
-    Post(
-      avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_woman.avif',
-      title: 'Natalie: I just got an offer from...',
-      category: 'Tech Talk',
-    ),
-    Post(
-avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_woman.avif',
-      title: 'How do you manage your work life...',
-      category: 'Tech Talk',
-    ),
-    Post(
-      avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/smiling-young-man-illustration_1308-173524.avif',
-      title: 'I\'m thinking of moving to a smaller...',
-      category: 'Tech Talk',
-    ),
-  ];
-
+var _posts= HomeScreenModel().posts;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +84,7 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
             icon: InkWell( onTap:(){
               Get.off(EventsScreen());
             }, child: const Icon(Icons.people)),
-            label: 'Network',
+            label: 'Community',
           ),
           BottomNavigationBarItem(
             icon: InkWell(
@@ -118,7 +92,7 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
                   Get.off(HomeScreen());
                 },
                 child: Icon(Icons.work)),
-            label: 'Jobs',
+            label: 'Events',
           ),
            BottomNavigationBarItem(
             icon: InkWell(
@@ -134,7 +108,7 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
                   Get.off(SearchScreen());
                 },
                 child: Icon(Icons.notifications)),
-            label: 'Notifications',
+            label: 'Profile',
           ),
         ],
         onTap: (index) {
@@ -217,16 +191,4 @@ avatar: 'https://raw.githubusercontent.com/Air908/3dmodels/refs/heads/main/3d_wo
       ),
     );
   }
-}
-
-class Post {
-  final String avatar;
-  final String title;
-  final String category;
-
-  Post({
-    required this.avatar,
-    required this.title,
-    required this.category,
-  });
 }
