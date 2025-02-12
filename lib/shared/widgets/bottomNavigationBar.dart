@@ -59,7 +59,7 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
               onTap: () {
                 Get.off(SearchScreen());
               },
-              child: Icon(Icons.notifications)),
+              child: Icon(Icons.verified_user)),
           label: 'Profile',
         ),
       ],
