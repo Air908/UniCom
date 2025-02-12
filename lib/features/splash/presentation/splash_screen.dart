@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
+import 'package:get/get_core/src/get_main.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../auth/presentation/signup_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
