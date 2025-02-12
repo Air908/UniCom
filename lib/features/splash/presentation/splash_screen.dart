@@ -1,3 +1,4 @@
+import 'package:events/features/Introduction/presentation/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       setState(() {
         loading = false;
-          Get.off(FandomOnboarding());
+          Get.off(IntroScreen());
       });
     });
   }

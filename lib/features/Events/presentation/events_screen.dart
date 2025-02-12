@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-import '../models/EventModel.dart';
+import '../models/EventModel.dart'; // Ensure EventModel is correctly implemented
 
 class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
@@ -15,13 +16,7 @@ class _EventsScreenState extends State<EventsScreen> {
   final Set<String> _selectedCategories = {};
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _filters = [
-    "All events",
-    "Today",
-    "Tomorrow",
-    "This week"
-  ];
-
+  final List<String> _filters = ["All events", "Today", "Tomorrow", "This week"];
   final List<String> _categories = [
     "Career & Business",
     "Tech",
@@ -35,22 +30,22 @@ class _EventsScreenState extends State<EventsScreen> {
 
   final List<Event> _events = [
     Event(
-      title: "How to become a millionaire in 2023",
-      venue: "The Westin St. Francis San Francisco on Union Square",
+      title: "How to Become a Millionaire in 2023",
+      venue: "The Westin St. Francis, SF",
       dateTime: "Tue, Dec 27, 6:00 PM",
-      image: "assets/event1.jpg",
+      image: "https://i.ytimg.com/vi/Bv5K6I2DQTM/maxresdefault.jpg",
     ),
     Event(
       title: "Introduction to Data Science",
       venue: "UC Berkeley Extension",
       dateTime: "Thu, Dec 29, 2:00 PM",
-      image: "assets/event2.jpg",
+      image: "https://cdn.slidesharecdn.com/ss_thumbnails/introductiontodatascience-181119212838-thumbnail-4.jpg?cb=1542663015",
     ),
     Event(
       title: "Product Management Career Tips",
-      venue: "Zoom online event",
+      venue: "Zoom Online Event",
       dateTime: "Fri, Dec 30, 10:00 AM",
-      image: "assets/event3.jpg",
+      image: "https://th.bing.com/th/id/OIP.e4OfTovxUE2xDKDOW5nNQwHaEK?rs=1&pid=ImgDetMain",
     ),
   ];
 
@@ -77,7 +72,7 @@ class _EventsScreenState extends State<EventsScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Search Bar
+          // 🔎 Search Bar
           Padding(
             padding: const EdgeInsets.all(16),
             child: TextField(
@@ -96,7 +91,7 @@ class _EventsScreenState extends State<EventsScreen> {
             ),
           ),
 
-          // Tabs
+          // 📌 Tabs
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -110,18 +105,14 @@ class _EventsScreenState extends State<EventsScreen> {
             ),
           ),
 
+          // 🔍 Filters
           const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
               'Filters',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-
-          // Filters
           SizedBox(
             height: 40,
             child: ListView(
@@ -131,28 +122,24 @@ class _EventsScreenState extends State<EventsScreen> {
             ),
           ),
 
+          // 🏷 Categories
           const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
               'Categories',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-
-          // Categories
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
+          SizedBox(
+            height: 40,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               children: _categories.map((category) => _buildCategoryChip(category)).toList(),
             ),
           ),
 
-          // Events List
+          // 🎫 Events List
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
@@ -165,6 +152,7 @@ class _EventsScreenState extends State<EventsScreen> {
     );
   }
 
+  // 🌟 Tab Selection
   Widget _buildTab(String title) {
     bool isSelected = _selectedTab == title;
     return GestureDetector(
@@ -194,6 +182,7 @@ class _EventsScreenState extends State<EventsScreen> {
     );
   }
 
+  // 🔎 Filters
   Widget _buildFilterChip(String filter) {
     bool isSelected = _selectedFilter == filter;
     return Padding(
@@ -215,72 +204,55 @@ class _EventsScreenState extends State<EventsScreen> {
     );
   }
 
+  // 🏷 Categories
   Widget _buildCategoryChip(String category) {
     bool isSelected = _selectedCategories.contains(category);
-    return FilterChip(
-      label: Text(category),
-      selected: isSelected,
-      onSelected: (bool selected) {
-        setState(() {
-          if (selected) {
-            _selectedCategories.add(category);
-          } else {
-            _selectedCategories.remove(category);
-          }
-        });
-      },
-      backgroundColor: Colors.grey[100],
-      selectedColor: Colors.blue[100],
-      labelStyle: TextStyle(
-        color: isSelected ? Colors.blue : Colors.black,
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: FilterChip(
+        label: Text(category),
+        selected: isSelected,
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              _selectedCategories.add(category);
+            } else {
+              _selectedCategories.remove(category);
+            }
+          });
+        },
+        backgroundColor: Colors.grey[100],
+        selectedColor: Colors.blue[100],
+        labelStyle: TextStyle(
+          color: isSelected ? Colors.blue : Colors.black,
+        ),
       ),
     );
   }
 
+  // 🎫 Event Cards
   Widget _buildEventCard(Event event) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
-      elevation: 0,
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              event.image,
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            child: Image.network(event.image, height: 150, width: double.infinity, fit: BoxFit.cover),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  event.title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(event.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text(
-                  event.venue,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.blue[700],
-                  ),
-                ),
+                Text(event.venue, style: TextStyle(fontSize: 16, color: Colors.blue[700])),
                 const SizedBox(height: 4),
-                Text(
-                  event.dateTime,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                  ),
-                ),
+                Text(event.dateTime, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
               ],
             ),
           ),
@@ -289,4 +261,3 @@ class _EventsScreenState extends State<EventsScreen> {
     );
   }
 }
-

@@ -1,3 +1,4 @@
+import 'package:events/shared/widgets/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
             children: [
               _buildHeader(),
               _buildUserInfo(),
-              _buildActionButtons(),
               _buildInterests(),
               _buildTabSection(),
               _buildPosts(),
@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: bottomnavigationbar(selectedIndex: 3),
     );
   }
 
@@ -54,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: const AssetImage('assets/profile_bird.jpg'),
+            backgroundImage: const AssetImage('lib/shared/assets/images/welcome.png'),
           ),
           const SizedBox(height: 16),
           const Text(
@@ -78,44 +78,6 @@ class ProfileScreen extends StatelessWidget {
             style: TextStyle(
               color: Colors.grey,
               fontSize: 14,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButtons() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.grey),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: const Text('Follow'),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: const Text(
-                'Message',
-                style: TextStyle(color: Colors.white),
-              ),
             ),
           ),
         ],
@@ -157,8 +119,6 @@ class ProfileScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          _buildTab('Posts', true),
-          _buildTab('Collections', false),
           _buildTab('Groups', false),
         ],
       ),
@@ -264,35 +224,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildBottomNav() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.ondemand_video),
-          label: 'Videos',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.group),
-          label: 'Friends',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
-        ),
-      ],
-      currentIndex: 4,
     );
   }
 }

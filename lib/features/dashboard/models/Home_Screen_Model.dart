@@ -1,4 +1,4 @@
-import '../../discussion/presentation/discussion_screen.dart';
+import '../../community/presentation/community_screen.dart';
 
 
 

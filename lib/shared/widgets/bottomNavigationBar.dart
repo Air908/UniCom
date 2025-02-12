@@ -1,7 +1,7 @@
+import 'package:events/features/Profile/presentation/profile_screen.dart';
+import 'package:events/features/community/presentation/community_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../features/Events/presentation/EventDetailsScreen.dart';
 import '../../features/Events/presentation/events_screen.dart';
 import '../../features/dashboard/presentation/home_screen.dart';
@@ -33,7 +33,7 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
         BottomNavigationBarItem(
           icon: InkWell(
               onTap: () {
-                Get.off(EventsScreen());
+                Get.to(CommunitiesListScreen());
               },
               child: const Icon(Icons.people)),
           label: 'Community',
@@ -41,7 +41,7 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
         BottomNavigationBarItem(
           icon: InkWell(
               onTap: () {
-                Get.off(HomeScreen());
+                Get.to(EventsScreen());
               },
               child: Icon(Icons.event)),
           label: 'Events',
@@ -49,17 +49,9 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
         BottomNavigationBarItem(
           icon: InkWell(
               onTap: () {
-                Get.off(EventDetailsScreen());
+                Get.to(ProfileScreen());
               },
-              child: Icon(Icons.message)),
-          label: 'Messages',
-        ),
-        BottomNavigationBarItem(
-          icon: InkWell(
-              onTap: () {
-                Get.off(SearchScreen());
-              },
-              child: Icon(Icons.verified_user)),
+              child: Icon(Icons.supervised_user_circle_sharp)),
           label: 'Profile',
         ),
       ],

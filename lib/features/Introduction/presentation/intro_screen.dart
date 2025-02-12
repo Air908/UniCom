@@ -1,4 +1,6 @@
+import 'package:events/features/auth/presentation/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/IntroModel.dart';
 
@@ -15,7 +17,12 @@ class _IntroScreenState extends State<IntroScreen> {
 
   final List<IntroContent> _contents = [
     IntroContent(
-      image: 'assets/shopping_illustration.png', // You'll need to add this asset
+      image: 'https://thumbs.dreamstime.com/z/vector-illustration-community-consisting-young-people-colorful-depicts-cute-multi-nationalities-add-separate-176377060.jpg', // You'll need to add this asset
+      title: 'Pick every product that you want!',
+      description: 'Determine your financial planning. Everything is right on track, no problem, guys!',
+    ),
+    IntroContent(
+      image: 'https://img.freepik.com/free-vector/events-concept-illustration_114360-7733.jpg', // You'll need to add this asset
       title: 'Pick every product that you want!',
       description: 'Determine your financial planning. Everything is right on track, no problem, guys!',
     ),
@@ -63,7 +70,7 @@ class _IntroScreenState extends State<IntroScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
+          Image.network(
             content.image,
             height: 300,
             fit: BoxFit.contain,
@@ -134,10 +141,7 @@ class _IntroScreenState extends State<IntroScreen> {
         onPressed: () {
           if (_currentPage == _contents.length - 1) {
             // Navigate to main app
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const MainScreen()),
-            // );
+            Get.to(FandomOnboarding());
           } else {
             _pageController.nextPage(
               duration: const Duration(milliseconds: 300),
