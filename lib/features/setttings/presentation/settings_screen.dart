@@ -59,16 +59,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 24),
               _buildPreferencesSection(),
               const SizedBox(height: 32),
-              const Text(
-                'Support',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 24),
-              _buildSupportSection(),
             ],
           ),
         ),
@@ -100,12 +90,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           showArrow: true,
           onTap: () {},
         ),
-        _buildSettingsItem(
-          'Notifications',
-          '',
-          showArrow: true,
-          onTap: () {},
-        ),
       ],
     );
   }
@@ -126,31 +110,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isDarkMode = !isDarkMode;
             });
           },
-        ),
-        _buildSettingsItem(
-          'Data usage',
-          '',
-          showArrow: true,
-          onTap: () {},
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSupportSection() {
-    return Column(
-      children: [
-        _buildSettingsItem(
-          'I need help',
-          '',
-          showArrow: true,
-          onTap: () {},
-        ),
-        _buildSettingsItem(
-          'I have a safety concern',
-          '',
-          showArrow: true,
-          onTap: () {},
         ),
       ],
     );

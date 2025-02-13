@@ -1,5 +1,9 @@
+import 'package:events/features/setttings/presentation/notifications_settings_screen.dart';
 import 'package:events/shared/widgets/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../setttings/presentation/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -40,7 +44,9 @@ class ProfileScreen extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(SettingsScreen());
+            },
           ),
         ],
       ),
@@ -73,13 +79,6 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          const Text(
-            '9k followers',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 14,
-            ),
-          ),
         ],
       ),
     );
@@ -119,7 +118,8 @@ class ProfileScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          _buildTab('Groups', false),
+          _buildTab('Communities', true),
+          _buildTab('Events', false),
         ],
       ),
     );
@@ -163,19 +163,19 @@ class ProfileScreen extends StatelessWidget {
           'Golden Gate Bridge',
           '14 views',
           'liked by 23 people',
-          'assets/bridge.jpg',
+          'https://th.bing.com/th/id/OIP.QdzAAyOhdwk7IdWZCdM24AHaEn?rs=1&pid=ImgDetMain',
         ),
         _buildPostCard(
           'San Francisco City Hall',
           '18 views',
           'liked by 34 people',
-          'assets/city_hall.jpg',
+          'https://th.bing.com/th/id/OIP.1wtea--BJYoMuXFuWo__TQHaFj?rs=1&pid=ImgDetMain',
         ),
         _buildPostCard(
           'Famous house on Lombard Street',
           '24 views',
           'liked by 45 people',
-          'assets/house.jpg',
+          'https://th.bing.com/th/id/OIP.odSm-Lqc9Au-acbkdUboowHaE-?rs=1&pid=ImgDetMain',
         ),
       ],
     );
@@ -193,7 +193,7 @@ class ProfileScreen extends StatelessWidget {
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
+            child: Image.network(
               imagePath,
               fit: BoxFit.cover,
               width: double.infinity,

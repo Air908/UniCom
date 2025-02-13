@@ -270,13 +270,6 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                   bottom: BorderSide(color: Colors.grey, width: 0.5),
                 ),
               ),
-              child: Row(
-                children: [
-                  _buildTab("All"),
-                  _buildTab("Communities"),
-                  _buildTab("Events"),
-                ],
-              ),
             ),
 
             // Featured Communities Section
@@ -343,35 +336,6 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
             child: const Text('See All'),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildTab(String title) {
-    bool isSelected = _currentTab == title;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _currentTab = title;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isSelected ? Colors.blue : Colors.transparent,
-              width: 2,
-            ),
-          ),
-        ),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: isSelected ? Colors.blue : Colors.grey,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
       ),
     );
   }

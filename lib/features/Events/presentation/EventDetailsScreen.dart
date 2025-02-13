@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class EventDetailsScreen extends StatelessWidget {
+class EventDetailsScreen extends StatefulWidget {
   const EventDetailsScreen({super.key});
 
   @override
+  State<EventDetailsScreen> createState() => _EventDetailsScreenState();
+}
+
+class _EventDetailsScreenState extends State<EventDetailsScreen> {
+
+  @override
   Widget build(BuildContext context) {
+    var  arguments = Get.arguments;
+    var image = arguments['image'];
+    String title = arguments['title'].toString();
+    var venue = arguments['venue'];
+    var dateTime = arguments['dateTime'];
+
     return Scaffold(
       body: Stack(
         children: [
@@ -22,18 +35,9 @@ class EventDetailsScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                       ),
-                      child: Image.asset(
-                        'assets/event_banner.png',
+                      child: Image.network(
+                        image,
                         fit: BoxFit.cover,
-                      ),
-                    ),
-                    // Close Button
-                    Positioned(
-                      top: 40,
-                      left: 16,
-                      child: IconButton(
-                        icon: const Icon(Icons.close, color: Colors.black),
-                        onPressed: () => Navigator.pop(context),
                       ),
                     ),
                   ],
@@ -45,8 +49,8 @@ class EventDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'The Future of Work: Remote Work and the Metaverse',
+                      Text(
+                       "${title}",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -62,7 +66,7 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Tomorrow, 4:00 PM',
+                        dateTime,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[800],
@@ -70,7 +74,7 @@ class EventDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Online Event · 1.2K attendees',
+                        '$venue · 1.2K attendees',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[600],

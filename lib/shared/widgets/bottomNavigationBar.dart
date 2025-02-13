@@ -21,17 +21,26 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
   Widget build(BuildContext context) {
     int? SelectedIndex = widget.selectedIndex;
     return BottomNavigationBar(
+      backgroundColor: Colors.white,
       currentIndex: SelectedIndex!,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          backgroundColor: Colors.transparent,
+          icon: InkWell(
+              splashColor: Colors.transparent,
+              onTap: (){
+                Get.to(HomeScreen());
+              },
+              child: Icon(Icons.home)),
           label: 'Home',
         ),
         BottomNavigationBarItem(
+          backgroundColor: Colors.transparent,
           icon: InkWell(
+              splashColor: Colors.transparent,
               onTap: () {
                 Get.to(CommunitiesListScreen());
               },
@@ -39,7 +48,9 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
           label: 'Community',
         ),
         BottomNavigationBarItem(
+          backgroundColor: Colors.transparent,
           icon: InkWell(
+              splashColor: Colors.transparent,
               onTap: () {
                 Get.to(EventsScreen());
               },
@@ -47,7 +58,9 @@ class _BottomnavigationbarState extends State<bottomnavigationbar> {
           label: 'Events',
         ),
         BottomNavigationBarItem(
+          backgroundColor: Colors.transparent,
           icon: InkWell(
+            splashColor: Colors.transparent,
               onTap: () {
                 Get.to(ProfileScreen());
               },
