@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "138572401031",
+    "project_id": "unicom-d1481",
+    "storage_bucket": "unicom-d1481.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138572401031:android:ef9aa992155d243ef46b22",
+        "android_client_info": {
+          "package_name": "com.yourcompany.eventapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpjpJeLaJFqlWGOLP7sHEWgSuZib6aAHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
