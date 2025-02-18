@@ -1,3 +1,4 @@
+import 'package:events/shared/widgets/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -219,33 +220,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                   ),
                 ],
               ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.blue,
-                unselectedItemColor: Colors.grey,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.people),
-                    label: 'Friends',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.play_circle_outline),
-                    label: 'Video',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications),
-                    label: 'Notifications',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: 'Profile',
-                  ),
-                ],
-              ),
+              child: bottomnavigationbar(selectedIndex: 2,),
             ),
           ),
         ],

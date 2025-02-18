@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:138572401031:android:ef9aa992155d243ef46b22",
+        "mobilesdk_app_id": "1:138572401031:android:76f929080a430351f46b22",
         "android_client_info": {
-          "package_name": "com.yourcompany.eventapp"
+          "package_name": "in.flyingHacker.united.events"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "138572401031-ar3hl73g9hc66mi8sua0cv3inrq8jvt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.flyingHacker.united.events",
+            "certificate_hash": "9101b651d365f9171ebc499e2da926b448c879c1"
+          }
+        },
+        {
+          "client_id": "138572401031-bipea6tp9j8m28tf6h8vk2uh0255rrn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBpjpJeLaJFqlWGOLP7sHEWgSuZib6aAHo"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138572401031-bipea6tp9j8m28tf6h8vk2uh0255rrn0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "138572401031-15t6i2k6pnfel2gtmjenr6n2h8jaav4k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.flyingHacker.united.events"
+              }
+            }
+          ]
         }
       }
     }
