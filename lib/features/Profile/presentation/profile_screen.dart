@@ -1,3 +1,4 @@
+import 'package:events/features/Profile/controller/profileController.dart';
 import 'package:events/features/setttings/presentation/notifications_settings_screen.dart';
 import 'package:events/shared/widgets/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
@@ -5,26 +6,38 @@ import 'package:get/get.dart';
 
 import '../../setttings/presentation/settings_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final ProfileController profileController = Get.put(ProfileController());
+
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
+          child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildHeader(),
               _buildUserInfo(),
               _buildInterests(),
-              _buildTabSection(),
-              _buildPosts(),
-            ],
+      _buildTabSection(),
+            Obx(()=>  profileController.isCommunitySelected.value == true ?
+                _buildPosts():SizedBox()),
+             Obx(()=>  profileController.isEventSelected.value == true ? _buildEvent() :SizedBox(),
+            ),
+              ],
+          ),
           ),
         ),
-      ),
       bottomNavigationBar: bottomnavigationbar(selectedIndex: 3),
     );
   }
@@ -60,7 +73,8 @@ class ProfileScreen extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: const AssetImage('lib/shared/assets/images/welcome.png'),
+            backgroundImage:
+                const AssetImage('lib/shared/assets/images/welcome.png'),
           ),
           const SizedBox(height: 16),
           const Text(
@@ -100,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
       child: Row(
         children: List.generate(
           interests.length,
-              (index) => Container(
+          (index) => Container(
             margin: const EdgeInsets.only(right: 8),
             child: Chip(
               avatar: Icon(icons[index], size: 16),
@@ -114,13 +128,36 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildTabSection() {
-    return Padding(
+    return  Obx( ()=>  Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          _buildTab('Communities', true),
-          _buildTab('Events', false),
-        ],
+      child:Row(
+          children: [
+            InkWell(
+                splashColor: Colors.transparent,
+                onTap: () {
+                  if(profileController.isCommunitySelected.value==true) {
+                    profileController.isCommunitySelected.value = false;
+                    profileController.isEventSelected.value = true;
+                    print("IsEventSelected: ${profileController.isEventSelected.value}");
+                    print("IsCommunitySelected: ${profileController.isCommunitySelected.value}");
+                  }
+                },
+                child: _buildTab('Communities',
+                    profileController.isCommunitySelected.value)),
+            InkWell(
+                splashColor: Colors.transparent,
+                onTap: () {
+                  if(profileController.isEventSelected.value==true) {
+                    profileController.isCommunitySelected.value = true;
+                    profileController.isEventSelected.value = false;
+                    print("IsEventSelected: ${profileController.isEventSelected.value}");
+                    print("IsCommunitySelected: ${profileController.isCommunitySelected.value}");
+                  }
+                },
+                child: _buildTab(
+                    'Events', profileController.isEventSelected.value)),
+          ],
+        ),
       ),
     );
   }
@@ -160,33 +197,74 @@ class ProfileScreen extends StatelessWidget {
       crossAxisSpacing: 16,
       children: [
         _buildPostCard(
-          'Golden Gate Bridge',
-          '14 views',
-          'liked by 23 people',
-          'https://th.bing.com/th/id/OIP.QdzAAyOhdwk7IdWZCdM24AHaEn?rs=1&pid=ImgDetMain',
+          name: 'Golden Gate Bridge',
+          members: 14,
+          privacy: 'Protected',
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.QdzAAyOhdwk7IdWZCdM24AHaEn?rs=1&pid=ImgDetMain',
         ),
         _buildPostCard(
-          'San Francisco City Hall',
-          '18 views',
-          'liked by 34 people',
-          'https://th.bing.com/th/id/OIP.1wtea--BJYoMuXFuWo__TQHaFj?rs=1&pid=ImgDetMain',
+          name: 'San Francisco City Hall',
+          members: 18,
+          privacy: 'Public',
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.1wtea--BJYoMuXFuWo__TQHaFj?rs=1&pid=ImgDetMain',
         ),
         _buildPostCard(
-          'Famous house on Lombard Street',
-          '24 views',
-          'liked by 45 people',
-          'https://th.bing.com/th/id/OIP.odSm-Lqc9Au-acbkdUboowHaE-?rs=1&pid=ImgDetMain',
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.odSm-Lqc9Au-acbkdUboowHaE-?rs=1&pid=ImgDetMain',
+          name: 'Famous house on Lombard Street',
+          members: 24,
+          privacy: 'Private',
         ),
       ],
     );
   }
 
-  Widget _buildPostCard(
-      String title,
-      String views,
-      String likes,
-      String imagePath,
-      ) {
+  Widget _buildEvent() {
+    return GridView.count(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      padding: const EdgeInsets.all(16),
+      mainAxisSpacing: 16,
+      crossAxisSpacing: 16,
+      children: [
+        _buildPostCard(
+          name: 'Becker Inc',
+          members: 14,
+          privacy: 'Catalina Foothills',
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.QdzAAyOhdwk7IdWZCdM24AHaEn?rs=1&pid=ImgDetMain',
+          dateTime: '2014-06-21T01:25:34.333Z'
+        ),
+        _buildPostCard(
+          name: 'King - Will',
+          members: 18,
+          privacy: 'King - Will',
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.1wtea--BJYoMuXFuWo__TQHaFj?rs=1&pid=ImgDetMain',
+          dateTime: '2016-05-21T01:25:34.333Z'
+        ),
+        _buildPostCard(
+          imageUrl:
+              'https://th.bing.com/th/id/OIP.odSm-Lqc9Au-acbkdUboowHaE-?rs=1&pid=ImgDetMain',
+          name: 'Williamson, Hagenes and King',
+          members: 24,
+          privacy: 'Lake Ridge',
+          dateTime: '1993-10-31T10:36:04.610Z'
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPostCard({
+    name,
+    privacy,
+    members,
+    imageUrl,
+    dateTime,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -194,7 +272,7 @@ class ProfileScreen extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              imagePath,
+              imageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
             ),
@@ -202,7 +280,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          title,
+          name,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -210,14 +288,14 @@ class ProfileScreen extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         Text(
-          views,
+          members.toString(),
           style: const TextStyle(
             color: Colors.grey,
             fontSize: 12,
           ),
         ),
         Text(
-          likes,
+          privacy,
           style: const TextStyle(
             color: Colors.grey,
             fontSize: 12,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:events/features/auth/presentation/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,10 +71,13 @@ class _IntroScreenState extends State<IntroScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.network(
-            content.image,
+          CachedNetworkImage(
             height: 300,
-            fit: BoxFit.contain,
+            imageUrl: content.image,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.broken_image),
+            fit: BoxFit.cover,
+            width: double.infinity,
           ),
           const Spacer(),
           Container(
@@ -141,7 +145,7 @@ class _IntroScreenState extends State<IntroScreen> {
         onPressed: () {
           if (_currentPage == _contents.length - 1) {
             // Navigate to main app
-            Get.to(FandomOnboarding());
+            Get.to(LoginScreen());
           } else {
             _pageController.nextPage(
               duration: const Duration(milliseconds: 300),

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../auth/presentation/signup_screen.dart' show FandomOnboarding;
+import '../../auth/presentation/signup_screen.dart' show LoginScreen;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             IconButton(onPressed: () async {
               await FirebaseAuth.instance.signOut();
               await GoogleSignIn().signOut();
-              Get.offAll(FandomOnboarding());
+              Get.offAll(LoginScreen());
             }, icon: Icon(Icons.logout))
           ],
         ),
