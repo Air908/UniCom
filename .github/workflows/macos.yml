@@ -1,4 +1,4 @@
-name: macOS Testing
+name: macOS Flutter Testing
 
 on:
   push:
@@ -10,9 +10,22 @@ jobs:
   macos-job:
     runs-on: macos-latest
     steps:
-      - name: Check macOS Version
-        run: sw_vers
-      - name: Run a Test Command
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
         run: |
-          echo "This is a macOS virtual machine"
-          system_profiler SPSoftwareDataType
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+
+      - name: Verify Flutter Installation
+        run: flutter doctor
+
+      - name: Enable macOS Support
+        run: flutter config --enable-macos-desktop
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Flutter Tests
+        run: flutter run
