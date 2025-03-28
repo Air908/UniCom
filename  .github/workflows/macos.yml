@@ -1,0 +1,14 @@
+name: macOS Testing
+
+on: [push, pull_request]
+
+jobs:
+  macos-job:
+    runs-on: macos-latest
+    steps:
+      - name: Check macOS Version
+        run: sw_vers
+      - name: Run a Test Command
+        run: |
+          echo "This is a macOS virtual machine"
+          system_profiler SPSoftwareDataType
