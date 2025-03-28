@@ -1,6 +1,10 @@
 name: macOS Testing
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "Secondmaster" ]
+  pull_request:
+    branches: [ "Secondmaster" ]
 
 jobs:
   macos-job:
